@@ -9,6 +9,8 @@
 				<div class="question">					
 				<h3><%= link_to q.title, q %></h3>
 				<p><%= q.created_at %></p>
+				<%= link_to 'Editar', edit_question_path(q) %>
+
 				</div>
 			<% end %>
 		</div>
