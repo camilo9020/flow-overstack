@@ -1,17 +1,16 @@
 <div class="container">
+	<h1>Preguntas</h1>
+	<div class="text-right">
+			<%= link_to "<span class='glyphicon glyphicon-plus'></span> Nueva pregunta".html_safe, new_question_path, class: "btn btn-primary" %>
+	</div>
 	<div class="row">
 		<div class="col-md-12">
-			
-			<h1>Preguntas</h1>
-
 			<% @questions.each do |q| %>
 				<div class="question">					
-				<%= q.title%>
+				<h3><%= link_to q.title, q %></h3>
+				<p><%= q.created_at %></p>
 				</div>
 			<% end %>
-
-
-
 		</div>
 	</div>
 </div>
