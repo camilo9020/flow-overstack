@@ -8,8 +8,10 @@
 			<% @questions.each do |q| %>
 				<div class="question">					
 				<h3><%= link_to q.title, q %></h3>
-				<p><%= q.created_at %></p>
+				<p><%= q.updated_at %></p>
 				<%= link_to 'Editar', edit_question_path(q) %>
+				<%= link_to 'Eliminar', question_path(q), method: :delete, data:{ confirm:'¿Estas seguro que deseas eliminar la pregunta?'} %>
+
 
 				</div>
 			<% end %>
