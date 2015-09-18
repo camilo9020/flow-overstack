@@ -5,3 +5,14 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+
+50.times do |n|
+		title= Faker::Lorem.sentence(1)
+		description= Faker::Lorem.sentence(3)
+		Question.create!(user_id: n,
+			             title: title,
+			             description: description,
+			             created_at:Time.zone.now)
+  
+end
