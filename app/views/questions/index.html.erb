@@ -4,17 +4,25 @@
 			<%= link_to "<span class='glyphicon glyphicon-plus'></span> Nueva pregunta".html_safe, new_question_path, class: "btn btn-primary" %>
 	</div>
 	<div class="row">
-		<div class="col-md-12">
-			<% @questions.each do |q| %>
-				<div class="question">					
-				<h3><%= link_to q.title, q %></h3>
-				<p><%= q.updated_at %></p>
-				<%= link_to 'Editar', edit_question_path(q) %>
-				<%= link_to 'Eliminar', question_path(q), method: :delete, data:{ confirm:'¿Estas seguro que deseas eliminar la pregunta?'} %>
-
-
+		<% @questions.each do |q| %>
+			 <div class="col-md-12 question">
+				<div class="col-md-1 text-center">
+				  	<h3><%= q.votes%></h3>
+				  	<p>Votos</p>
 				</div>
+				<div class="col-md-1 text-center">
+				  	<h3><%= q.answers.count %></h3>
+				  	<p>Respuestas</p>
+				</div>
+				
+				<div class="col-md-10">
+					<h3><%= link_to q.title, q %></h3>
+					<p><%= q.updated_at %></p>
+					<%= link_to 'Editar', edit_question_path(q) %>
+					<%= link_to 'Eliminar', question_path(q), method: :delete, data:{ confirm:'¿Estas seguro que deseas eliminar la pregunta?'} %>
+	        	</div>
+			</div>  
 			<% end %>
-		</div>
+		
 	</div>
 </div>
