@@ -1,5 +1,5 @@
-<h3>Tu respuesta</h3>
-<%= form_for ([@question, @question.answers.build]) do |f| %>
+
+<%= form_for ([@question, @question.answers.comments.build]) do |f| %>
 	<div class="form-group">
 		<%= f.text_area :body, class: "form-control", placeholder: "Ingresa tu respuesta" %>
 	</div>
@@ -7,4 +7,3 @@
 		<%= f.submit class: "btn btn-primary pull-right" %>
 	</div>
 <%  end %>
-
