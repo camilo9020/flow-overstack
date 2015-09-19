@@ -25,7 +25,6 @@ User.create!(name:  "Example User",
 
 end
 
-
 #Questions
 	50.times do |n|
 			title= Faker::Lorem.sentence(1)
@@ -36,7 +35,6 @@ end
 				             description: description,
 				             created_at:(51-n).minutes.ago)
 	end
-
 # Answers
 	50.times do |n|
 	  body = Faker::Lorem.sentence(5)

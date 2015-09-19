@@ -1,12 +1,23 @@
 <div class="container">
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-9 col-sm-offset-1">
 			
-			<h2><%= @question.title  %></h2>
+			<div class="">
+
+			<h1><%= @question.title  %></h1>
 
 			<p><%= @question.description %></p>
 
-			<%= render 'answers/answers' %>
+			</div>
+
+
+			<h3>(<%= @answers.count %>) Respuesta(s)</h3>
+			
+			<%= render 'answers/show' %>
+
+			<h3>Tu respuesta</h3>
+
+			<%= render 'answers/new' %>
 			
 		</div>
 	</div>
