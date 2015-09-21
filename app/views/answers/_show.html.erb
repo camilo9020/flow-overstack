@@ -1,15 +1,7 @@
-
-		<% @answers.each do |answer| %>
-		<div class="answer">
-			
-			<%=answer.body %>
-
-			<div class="col-md-6 pull-right">
-
-				
-			</div>
-
-
-		</div>
-			
-		<% end %>
+<% answers.each do |answer| %>
+	<div class="answer" id="answer_<%= answer.id %>">
+		<%=answer.body %>
+		<%= render 'comment/show', comments: answer.comments %>
+		<%= render 'comment/newanswercomment', answer: answer %>
+	</div>
+<% end %>
