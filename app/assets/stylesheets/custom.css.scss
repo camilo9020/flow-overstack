@@ -3,22 +3,24 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-
-
 .question {
 	padding: 10px;
     border-bottom: 2px solid #eaeaea;
-
 }
-
 
 .answer {
 	padding: 5px;
-    border-top: 1px solid #eaeaea;
+    
 }
 
+.comment {
+	padding: 5px;
+    border-top: 1px solid #eaeaea;
+    font-size: 0.9em;
+    color: #A9A9A9;
+}
 
 p {
-  font-size: 1.1em;
+  font-size: 1.5em;
   line-height: 1.7em;
 }

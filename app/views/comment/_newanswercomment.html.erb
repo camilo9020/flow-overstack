@@ -1,10 +1,10 @@
 <%= form_for ([answer, answer.comments.build]) do |f| %>
-	<div class="form-group">
+	<div class="form-group input-sm">
 		<%= f.text_area :body, class: "form-control", placeholder: "Ingresa un comentario" %>
 	</div>
 		<%= f.hidden_field :commenter_type, :value => 'Answer' %>
 		<%= f.hidden_field :commenter_id, value: answer.id %>
 	<div class="form-group">
-		<%= f.submit class: "btn btn-primary pull-right" %>
+		<%= f.submit class: "btn btn-primary pull-right btn-sm" %>
 	</div>
 <%  end %>
