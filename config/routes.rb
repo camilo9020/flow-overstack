@@ -4,9 +4,15 @@ Rails.application.routes.draw do
 
   root 'questions#index'
 
+
   resources :questions do
-    resources :answers
+      resources :comments
   end  
+
+  resources :answers do
+    resources :comments
+  end
+  
 
   
 

@@ -1,24 +1,70 @@
-<div class="container">
+<div class="container-fluid">
 	<div class="row">
-		<div class="col-md-9 col-sm-offset-1">
-			
-			<div class="">
-
+		<div class="col-md-10 col-md-offset-1">
 			<h1><%= @question.title  %></h1>
-
 			<p><%= @question.description %></p>
+		</div>	
+		
+		<div class="question-comments col-md-10 col-md-offset-1">
+			<%  @question.comments.each do |comment| %>
+				<div class="comment">
+					<%= comment.body %>
+				</div>
+			<% end %>
+		</div>		
 
-			</div>
+		<div class="col-md-10 col-md-offset-1">
+			<%= form_for ([@question, @question.comments.build]) do |f| %>
+				<%= f.text_area :body, class: "form-control", placeholder: "Ingresa un comentario" %>
+				<%= f.hidden_field :commenter_type, :value =>'Question' %>
+				<%= f.hidden_field :commenter_id, :value => @question.id %>
+				<br>
+				<%= f.submit "Crear comentario", class: "btn btn-primary pull-right btn-sm" %>
+			<%  end %>
+		</div>			
 
-
-			<h3>(<%= @answers.count %>) Respuesta(s)</h3>
+					
+	</div>	
 			
-			<%= render 'answers/show' %>
 
+	<div class="row">
+
+		<div class="col-md-10 col-md-offset-1">
+			<h3>(<%= @question.answers.count %>) Respuesta(s)</h3>
+			<% @question.answers.each do |answer| %>
+				<div class="answer" id="answer_<%= answer.id %>">
+				   <%=answer.body %>
+					<% answer.comments.each do |comment| %>
+						<div class="comment">
+							<%= comment.body %>
+						</div>
+					<% end %>
+
+					<%= form_for ([answer, answer.comments.build]) do |f| %>
+						<%= f.text_area :body, class: "form-control", placeholder: "Ingresa un comentario" %>
+						<%= f.hidden_field :commenter_type, :value => 'Answer' %>
+						<%= f.hidden_field :commenter_id, value: answer.id %>
+						<br>
+						<%= f.submit "Crear comentario", class: "btn btn-primary pull-right btn-sm" %>
+						<br>
+					<%  end %>
+
+				</div>
+			<% end %>
+		</div>	
+
+		<div class="col-md-10 col-md-offset-1">
 			<h3>Tu respuesta</h3>
+			<%= form_for @answer do |f| %>
+				<%= f.text_area :body, class: "form-control", placeholder: "Ingresa tu respuesta" %>
+				<%= f.hidden_field :question_id, :value => @question.id %>
+				<br>
+				<%= f.submit "Crear respuesta",class: "btn btn-primary" %>
+			<%  end %>	
+		</div>	
 
-			<%= render 'answers/new' %>
-			
-		</div>
-	</div>
+	</div>	
 </div>
+
+
+	
