@@ -4,11 +4,9 @@
 	</div>
 	<div class="form-group">
 		<%= f.text_area :description, class: "form-control", placeholder: "Ingresa la desripción"  %>
+		<%= f.hidden_field :votes, value: 0 %>
 	</div>
 
-	<div class="form-group">
-		<%= f.text_field :description, class: "form-control", placeholder: "Ingresa la desripción"  %>
-	</div>
 	<div class="form-group">
 		<%= f.submit class: "btn btn-primary btn-lg btn-block" %>
 	</div>

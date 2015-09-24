@@ -10,20 +10,12 @@
 #Users
 User.create!(name:  "Example User",
              email: "example@railstutorial.org",
-             password_digest:     "foobar",
+             password:  "foobar",
+             password_confirmation: "foobar",
              created_at: Time.zone.now)
 
 
-60.times do |n|
-  name  = Faker::Name.name
-  email = "example-#{n+1}@railstutorial.org"
-  password = "password"
-  User.create!(name:  name,
-               email: email,
-               password_digest:   password,
-               created_at: (70-n).minutes.ago)
 
-end
 
 #Questions
 	50.times do |n|

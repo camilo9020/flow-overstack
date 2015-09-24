@@ -18,7 +18,6 @@
 				<%= f.text_area :body, class: "form-control", placeholder: "Ingresa un comentario" %>
 				<%= f.hidden_field :commenter_type, :value =>'Question' %>
 				<%= f.hidden_field :commenter_id, :value => @question.id %>
-				<br>
 				<%= f.submit "Crear comentario", class: "btn btn-primary pull-right btn-sm" %>
 			<%  end %>
 		</div>			
@@ -44,9 +43,7 @@
 						<%= f.text_area :body, class: "form-control", placeholder: "Ingresa un comentario" %>
 						<%= f.hidden_field :commenter_type, :value => 'Answer' %>
 						<%= f.hidden_field :commenter_id, value: answer.id %>
-						<br>
-						<%= f.submit "Crear comentario", class: "btn btn-primary pull-right btn-sm" %>
-						<br>
+						<%= f.submit "Crear comentario", class: "btn btn-primary pull-right btn-sm submit-botton" %>
 					<%  end %>
 
 				</div>
@@ -58,7 +55,6 @@
 			<%= form_for @answer do |f| %>
 				<%= f.text_area :body, class: "form-control", placeholder: "Ingresa tu respuesta" %>
 				<%= f.hidden_field :question_id, :value => @question.id %>
-				<br>
 				<%= f.submit "Crear respuesta",class: "btn btn-primary" %>
 			<%  end %>	
 		</div>	
