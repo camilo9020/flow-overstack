@@ -15,6 +15,11 @@
 		@question=Question.new
 	end
 
+	def votes
+		question=Question.find(params[:id])
+		question.voteup
+		redirect_to question
+	end
 
 	def create
       @question= Question.new(question_params)
@@ -44,6 +49,13 @@
 	def destroy
 		Question.find(params[:id]).destroy
 		redirect_to questions_path, notice: 'La pregunta fue eliminada con exitó'
+	end
+
+	def voteup
+		question=Question.find(params[:id])
+		question.votes.create(user: current_user)
+		redirect_to question_path
+		
 	end
 	
 

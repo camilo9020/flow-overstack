@@ -10,7 +10,7 @@
 		<% @questions.each do |q| %>
 			 <div class="col-md-12 question">
 				<div class="col-md-1 text-center">
-				  	<h3><%= q.votes%></h3>
+				  	<h3><%= q.votes.count %></h3>
 				  	<p>Votos</p>
 				</div>
 				<div class="col-md-1 text-center">
@@ -20,7 +20,7 @@
 				
 				<div class="col-md-10">
 					<h3><%= link_to q.title, question_path(q) %></h3>
-						<%= q.user %>
+						<%=  q.user.email if q.user %>
 					<p><%= q.updated_at.strftime("%Y-%m-%d") %></p>
 
 					<%= link_to "Eliminar", question_path(q), method: :delete, data: { confirm: "¿estas seguro de elimnar la pregunta?"} %>

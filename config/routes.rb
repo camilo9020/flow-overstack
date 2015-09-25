@@ -4,9 +4,15 @@ Rails.application.routes.draw do
 
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
-  delete 'logout' => 'sessions#destroy'
+  delete 'logout' => 'sessions#destroy' 
   get 'signup' => 'users#new'
   root 'questions#index'
+
+  
+  post 'questions/:id/voteup' => 'questions#voteup', as: 'vote_question'
+
+  post 'answers/:id/voteup' => 'answers#voteup', as: 'vote_answer'
+
 
   resources :users 
   resources :questions do
