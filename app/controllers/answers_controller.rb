@@ -8,11 +8,16 @@ class AnswersController < ApplicationController
 
   	def voteup
 		answer=Answer.find(params[:id])
-		puts "id: #{answer.id}"
 		answer.votes.create(user: current_user)
 		redirect_to question_path(answer.question)
 	end
 
+	def delete
+		answer=Answer.find(params[:id])
+		answer.votes.where(user:current_user).take.try(:destroy)
+		redirect_to question_path(answer.question)
+		
+	end
 
 private
 	def answer_params
