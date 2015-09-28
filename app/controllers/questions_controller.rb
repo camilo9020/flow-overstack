@@ -57,6 +57,13 @@
 		redirect_to question_path
 		
 	end
+
+	def delete_vote
+
+		question=Question.find(params[:id])
+		question.votes.where(user:current_user).take.try(:destroy)
+		redirect_to question_path
+	end
 	
 
 private

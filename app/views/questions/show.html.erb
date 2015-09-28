@@ -12,8 +12,17 @@
 			<div class="row">
 				<!-- show votes question-->
 				<div class="col-md-1">
-				<%= link_to vote_question_path, method: 'post', id: @question.id  do %>
-					<h2 class="glyphicon glyphicon-triangle-top" style="margin-left:20px"></h2>
+				
+				
+
+				<% if @question.votes.exists?(user: current_user) %>
+					<%= link_to delete_vote_path, method:'post' do %>
+					<h2 class="glyphicon glyphicon-triangle-top" style="margin-left:20px; color:#A9A9A9"></h2>
+					<% end %>
+				<% else %>
+					<%= link_to vote_question_path, method: 'post' do %>
+						<h2 class="glyphicon glyphicon-triangle-top" style="margin-left:20px"></h2>
+					<% end %>
 				<% end %>
 				<h2 class= 'text-center' style="margin-top:-10px; margin-left:10px"><%= @question.votes.count %><h2>
 				</div>
@@ -56,11 +65,26 @@
 		<div class="col-md-10 col-md-offset-1">
 			<% @question.answers.each do |answer| %>
 				<div class="row answer" id="answer_<%= answer.id %>">
-					 <!-- show answer votes -->
+					 <!-- show votes answer -->
 					<div class="col-md-1">
-					  <%= link_to vote_answer_path(answer.id), method: 'post' do %>
-					<h2 class="glyphicon glyphicon-triangle-top" style="margin-left:20px"></h2>
+
+					<% if answer.votes.exists?(user:current_user) %>
+
+						<%= link_to delete_vote_answer_path(answer.id), method: 'post' do %>
+							<h2 class="glyphicon glyphicon-triangle-top" style="margin-left:20px; color:#A9A9A9"></h2>
+						<% end %>
+
+							
+					<% else %>	
+
+						<%= link_to vote_answer_path(answer.id), method: 'post' do %>
+							<h2 class="glyphicon glyphicon-triangle-top" style="margin-left:20px"></h2>
+						<% end %>
+
 					<% end %>
+
+
+
 					  <h2 class= 'text-center' style="margin-top:-10px; margin-left:10px"><%= answer.votes.count %></h2>
 					</div>
 					  <!-- answer body  -->
