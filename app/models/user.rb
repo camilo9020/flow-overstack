@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 	before_save { self.email = email.downcase }
 	has_many :questions, dependent: :destroy
 	has_many :votes, dependent: :destroy
+	has_many :answers, dependent: :destroy
 	
 
 	validates :name, presence: true, length: {maximum:55}
