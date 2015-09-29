@@ -4,7 +4,7 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.2'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+
 
 gem 'faker',        '1.4.2'
 
@@ -33,6 +33,8 @@ gem 'bcrypt', '~> 3.1.7'
 #Use Marckdown
 gem 'redcarpet'
 
+
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
@@ -40,13 +42,15 @@ gem 'redcarpet'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
-
-  # Access an IRB console on exception pages or by using <%= console %> in views
+  gem 'sqlite3'
   gem 'web-console', '~> 2.0'
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
+
+group :production do
+  gem 'rails_12factor'
+  gem 'pg'
+end
+
 
