@@ -1,13 +1,16 @@
 	class QuestionsController < ApplicationController
 
 	def index
-		@questions=Question.all.sort.reverse
-	end
 
+	   if params[:search]
+		 	@questions= Question.search(params[:search]).order("created_at DESC")
+	   else
+			@questions = Question.order("created_at DESC")
+		end	
+	end
 	def show
 		@question= Question.find(params[:id])
 		@answer=Answer.new
-
 	end
 
 	def new
@@ -64,6 +67,10 @@
 		question.votes.where(user:current_user).take.try(:destroy)
 		redirect_to question_path
 	end
+
+	def search
+	   
+  	end
 	
 
 private

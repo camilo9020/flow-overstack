@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   root 'questions#index'
 
   
+
   post 'questions/:id/voteup' => 'questions#voteup', as: 'vote_question'
    post 'questions/:id/delete_vote' => 'questions#delete_vote', as: 'delete_vote'
 
