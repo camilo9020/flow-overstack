@@ -1,31 +1,29 @@
 <div class="container">
-	<br><br><br>
 	<div class="text-right">
-			<% if logged_in?%>
-			<%= link_to "<span class='glyphicon glyphicon-plus'></span> Nueva pregunta".html_safe, new_question_path, class: "btn btn-primary" %>
-			<% end %>
-
+		<% if logged_in?%>
+		<%= link_to "<span class='glyphicon glyphicon-plus'></span> Nueva pregunta".html_safe, new_question_path, class: "btn btn-primary" %>
+		<% end %>
 	</div>
 	<div class="row">
 		<% @questions.each do |q| %>
-			 <div class="col-md-12 question">
-				<div class="col-md-1 text-center">
-				  	<h3><%= q.votes.count %></h3>
-				  	<p>Votos</p>
-				</div>
-				<div class="col-md-1 text-center">
-				  	<h3><%= q.answers.count %></h3>
-				  	<p>Respuestas</p>
-				</div>
-				
-				<div class="col-md-10">
-					<h3><%= link_to q.title, question_path(q) %></h3>
-						<%=  q.user.email if q.user %>
-					<p><%= q.updated_at.strftime("%Y-%m-%d") %></p>
+		<div class="col-md-12 question">
+			<div class="col-md-1 text-center">
+				<h3><%= q.votes.count %></h3>
+				<p>Votos</p>
+			</div>
+			<div class="col-md-1 text-center">
+				<h3><%= q.answers.count %></h3>
+				<p>Respuestas</p>
+			</div>
 
-					<%= link_to "Eliminar", question_path(q), method: :delete, data: { confirm: "¿estas seguro de elimnar la pregunta?"} %>
-	        	</div>
-			</div>  
+			<div class="col-md-10">
+				<h3><%= link_to q.title, question_path(q) %></h3>
+				<%=  q.user.email if q.user %>
+				<p><%= q.updated_at.strftime("%Y-%m-%d") %></p>
+
+				<%= link_to "Eliminar", question_path(q), method: :delete, data: { confirm: "¿estas seguro de elimnar la pregunta?"} %>
+			</div>
+		</div>  
 		<% end %>
 		
 	</div>

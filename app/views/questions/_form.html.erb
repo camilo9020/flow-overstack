@@ -1,4 +1,8 @@
+
+
+
 <%= form_for @question do |f| %>
+	<%= render 'shared/error_messages', object: @question %>
 	<div class="form-group">
 		<%= f.text_field :title, class: "form-control", placeholder: "Ingresa el titulo de la pregunta"  %>
 	</div>
@@ -8,6 +12,6 @@
 	</div>
 
 	<div class="form-group">
-		<%= f.submit class: "btn btn-primary btn-lg btn-block" %>
+		<%= f.submit 'Crear pregunta', class: "btn btn-primary btn-lg btn-block" %>
 	</div>
 <% end %>

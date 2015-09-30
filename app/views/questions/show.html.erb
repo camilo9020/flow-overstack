@@ -3,134 +3,133 @@
 
 
 		
-		 <!-- show question -->
+		<!-- show question -->
 		<div class="col-md-10 col-md-offset-1">
 			<h1><%=@question.title  %></h1>
 		</div>	
-				 
+
 		<div class="col-md-10 col-md-offset-1">
 			<div class="row">
 				<!-- show votes question-->
 				<div class="col-md-1">
-				
-				
-
-				<% if @question.votes.exists?(user: current_user) %>
-					<%= link_to delete_vote_path, method:'post' do %>
+					<% if @question.votes.exists?(user: current_user) %>
+					<%= link_to delete_vote_path(@question.id), method:'post' do %>
 					<h2 class="glyphicon glyphicon-triangle-top" style="margin-left:20px; color:#A9A9A9"></h2>
 					<% end %>
-				<% else %>
-					<%= link_to vote_question_path, method: 'post' do %>
-						<h2 class="glyphicon glyphicon-triangle-top" style="margin-left:20px"></h2>
+					<% else %>
+					
+					<%= link_to vote_question_path(@question.id), method: 'post' do %>
+					<h2 class="glyphicon glyphicon-triangle-top" style="margin-left:20px"></h2>
 					<% end %>
-				<% end %>
-				<h2 class= 'text-center' style="margin-top:-10px; margin-left:10px"><%= @question.votes.count %><h2>
+					<% end %>
+					<h2 class= 'text-center' style="margin-top:-10px; margin-left:10px"><%= @question.votes.count %><h2>
 				</div>
-				<!-- show descryption question-->
+					<!-- show descryption question-->
 				<div class="col-md-11">
-					<p><%= markdown(@question.description) %></p>
+						<p><%= markdown(@question.description) %></p>
 				</div>
 
 				<!-- show comments question  -->
 				<div class="question-comments col-md-11 col-md-offset-1">
 					<%  @question.comments.each do |comment| %>
-						<div class="comment">
-							<%= markdown(comment.body)%>
-						</div>
+					<div class="comment">
+						<%= markdown(comment.body)%>
+					</div>
 					<% end %>
 				</div>
 				<% if logged_in? %>
-				<!-- do a comment to question -->
-					<div class="col-md-11 col-md-offset-1">
-						<%= form_for ([@question, @question.comments.build]) do |f| %>
-							<%= f.text_area :body, class: "form-control", placeholder: "Ingresa un comentario" %>
-							<%= f.hidden_field :commenter_type, :value =>'Question' %>
-							<%= f.hidden_field :commenter_id, :value => @question.id %>
-							<%= f.submit "Crear comentario", class: "btn btn-primary pull-right btn-sm" %>
-						<%  end %>
-					</div>
+				<!-- do a comment question -->
+				<div class="col-md-11 col-md-offset-1">
+					<%= form_for ([@question, @comment_question]) do |f| %>
+					<%= render 'shared/error_messages', object: @comment_question %>
+					<%= f.text_area :body, class: "form-control", placeholder: "Ingresa un comentario" %>
+					<%= f.hidden_field :commenter_type, :value =>'Question' %>
+					<%= f.hidden_field :commenter_id, :value => @question.id %>
+					<%= f.submit "Crear comentario", class: "btn btn-primary pull-right btn-sm" %>
+					<%  end %>
+				</div>
 				<% end %>			
-			</div>		
-		</div>
-		
-	</div>	
-			
+			</div>	
+		</div>	
 
-	<div class="row">
 
-		<div class="col-md-10 col-md-offset-1">
-			<h2>(<%= @question.answers.count %>) Respuesta(s)</h2>
-		</div>
-		  <!-- list answers  -->
-		<div class="col-md-10 col-md-offset-1">
-			<% @question.answers.each do |answer| %>
+		<div class="row">
+
+			<div class="col-md-10 col-md-offset-1">
+				<h2>(<%= @question.answers.count %>) Respuesta(s)</h2>
+			</div>
+			<!-- list answers  -->
+			<div class="col-md-10 col-md-offset-1">
+				<% @question.answers.where.not(id:nil).each do |answer| %>
 				<div class="row answer" id="answer_<%= answer.id %>">
-					 <!-- show votes answer -->
+					<!-- show votes answer -->
 					<div class="col-md-1">
 
-					<% if answer.votes.exists?(user:current_user) %>
+						<% if answer.votes.exists?(user:current_user) %>
 
 						<%= link_to delete_vote_answer_path(answer.id), method: 'post' do %>
-							<h2 class="glyphicon glyphicon-triangle-top" style="margin-left:20px; color:#A9A9A9"></h2>
+						<h2 class="glyphicon glyphicon-triangle-top" style="margin-left:20px; color:#A9A9A9"></h2>
 						<% end %>
 
-							
-					<% else %>	
+
+						<% else %>	
 
 						<%= link_to vote_answer_path(answer.id), method: 'post' do %>
-							<h2 class="glyphicon glyphicon-triangle-top" style="margin-left:20px"></h2>
+						<h2 class="glyphicon glyphicon-triangle-top" style="margin-left:20px"></h2>
 						<% end %>
 
-					<% end %>
+						<% end %>
 
 
 
-					  <h2 class= 'text-center' style="margin-top:-10px; margin-left:10px"><%= answer.votes.count %></h2>
+						<h2 class= 'text-center' style="margin-top:-10px; margin-left:10px"><%= answer.votes.count %></h2>
 					</div>
-					  <!-- answer body  -->
+					<!-- answer body  -->
 					<div class="col-md-11">
 						<p><%= markdown(answer.body)%></p>
 					</div>	
 
 					<div class="col-md-11 ccol-md-offset-1">
-						 <!-- list answer comments  -->
+						<!-- list answer comments  -->
 						<% answer.comments.each do |comment| %>
-							<div class="comment">
-								<%= markdown(comment.body) %>
-							</div>
+						<div class="comment">
+							<%= markdown(comment.body) %>
+						</div>
 						<% end %>
 					</div>
 					<% if logged_in? %>
-						<div class="col-md-11 col-md-offset-1">
-	                    <!-- do an answer comment  -->
-						<%= form_for ([answer, answer.comments.build]) do |f| %>
-							<%= f.text_area :body, class: "form-control", placeholder: "Ingresa un comentario" %>
-							<%= f.hidden_field :commenter_type, :value => 'Answer' %>
-							<%= f.hidden_field :commenter_id, value: answer.id %>
-							<%= f.submit "Crear comentario", class: "btn btn-primary pull-right btn-sm submit-botton" %>
+					<div class="col-md-11 col-md-offset-1">
+						<!-- do an answer comment  -->
+						<%= form_for ([answer, @comment_answer]) do |f| %>
+						<%=render 'shared/error_messages', object: @comment_answer %>
+						<%= f.text_area :body, class: "form-control", placeholder: "Ingresa un comentario" %>
+						<%= f.hidden_field :commenter_type, :value => 'Answer' %>
+						<%= f.hidden_field :commenter_id, value: answer.id %>
+						<%= f.submit "Crear comentario", class: "btn btn-primary pull-right btn-sm submit-botton" %>
 						<%  end %>
-						</div>
+					</div>
 					<% end %>	
 				</div>	
-			<% end %>
-		</div>
+				<% end %>
+			</div>
 
 
-		<% if logged_in? %>
-		<div class="col-md-10 col-md-offset-1">
-			<h2>Tu respuesta</h2>
-			<%= form_for @answer do |f| %>
+			<% if logged_in? %>
+			<div class="col-md-10 col-md-offset-1">
+				<h2>Tu respuesta</h2>
+				<%= form_for @answer do |f| %>
+				<%= render 'shared/error_messages', object: @answer %>
 				<%= f.text_area :body, class: "form-control", placeholder: "Ingresa tu respuesta" %>
 				<%= f.hidden_field :question_id, :value => @question.id %>
 				<%= f.hidden_field :user_id, :value => current_user.id %>
 				<%= f.submit "Crear respuesta",class: "btn btn-primary" %>
-			<%  end %>	
+				<%  end %>	
+			</div>	
+
+			<% end %>
+
 		</div>	
-
-		<% end %>
-
-	</div>	
-</div>
+	</div>
 
 
 	
