@@ -10,9 +10,7 @@
 
 		def show
 			@question= Question.find(params[:id])
-			@answer=Answer.new
-			@comment_question=@question.comments.new
-			@comment_answer=@answer.comments.new
+			@answer=Answer.new			
 		end
 
 		def new
