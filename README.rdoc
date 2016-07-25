@@ -1,29 +1,18 @@
-== README
+== FLOWOVERSTACK (Clone StackOverFlow)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This app is stackoverlow clone with the flowing  features:
 
-Things you may want to cover:
+* User CRUD
 
-* Ruby version
+If the user is athenticate can:
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Do Questions (CRUD)
+* Answer each Question.
+* Do Comments for questions and answers.
+* Each user can vote each answer and each question one time.
+* anyone can search questions and answers.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Heroku URL Deploy: https://flowoverstack-jch.herokuapp.com/
+
 
