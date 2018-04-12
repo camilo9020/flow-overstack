@@ -7,16 +7,16 @@ class AnswersController < ApplicationController
 	   		redirect_to question_path(@question)
 	   	else
 	   		render 'questions/show'
-	   	end	
-	end  
+	   	end
+	end
 
 	def delete
 		answer=Answer.find(params[:id])
 		answer.votes.where(user:current_user).take.try(:destroy)
 		redirect_to question_path(answer.question)
 	end
-	
-  	def voteup
+
+  def voteup
 		answer=Answer.find(params[:id])
 		answer.votes.create(user: current_user)
 		redirect_to question_path(answer.question)

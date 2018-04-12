@@ -19,8 +19,6 @@ class Question < ActiveRecord::Base
 	validates :title, :description, presence: true
 
 	def self.search(query)
-		where("title like ? OR description like ?", "%#{query}%", "%#{query}%") 
+		where("title like ? OR description like ?", "%#{query}%", "%#{query}%")
 	end
-
-	
 end

@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
- 
-  
+
+
 
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
-  delete 'logout' => 'sessions#destroy' 
+  delete 'logout' => 'sessions#destroy'
   get 'signup' => 'users#new'
   root 'questions#index'
 
-  
+
+
 
   post 'questions/:id/voteup' => 'questions#voteup', as: 'vote_question'
    post 'questions/:id/delete_vote' => 'questions#delete_vote', as: 'delete_vote'
@@ -16,14 +17,14 @@ Rails.application.routes.draw do
   post 'answers/:id/voteup' => 'answers#voteup', as: 'vote_answer'
   post 'answers/:id/delete_vote' => 'answers#delete', as: 'delete_vote_answer'
 
-  resources :users 
+  resources :users
   resources :questions do
       resources :comments
-  end  
+  end
   resources :answers do
     resources :comments
   end
-  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
