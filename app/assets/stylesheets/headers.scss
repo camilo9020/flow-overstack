@@ -1,0 +1,138 @@
+
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+
+/* forms */
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  margin-bottom: 15px;
+}
+
+.submit-botton {
+	margin-bottom: 15px;
+}
+
+input {
+  height: auto !important;
+}
+
+
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}
+
+.search {
+      margin-top: 15px;
+      text-align: center;
+
+
+        }
+
+/* header */
+
+#logo {
+    float: left;
+    margin-right: 10px;
+    font-size: 1.7em;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    padding-top: 9px;
+    font-weight: bold;
+
+    &:hover {
+    color: #fff;
+    text-decoration: none;
+    }
+}
+
+h2 {
+  padding-bottom: auto;
+
+
+}
+
+
+/* question, answer and comments*/
+.question {
+	padding: 10px;
+    border-bottom: 2px solid #eaeaea;
+}
+
+.answer {
+	padding: 5px;
+
+}
+
+.comment {
+	padding: 5px;
+    border-top: 1px solid #eaeaea;
+    font-size: 0.9em;
+    color: #A9A9A9;
+}
+
+p {
+  font-size: 1.2em;
+  line-height: 1.5em;
+}
+
+.gravatar {
+  float: left;
+  margin-right: 10px;
+}
+
+.gravatar_edit {
+  margin-top: 15px;
+}
+
+.voto {
+
+  color: #99CCCC
+
+}
+
+/* footer */
+
+footer {
+  margin-top: 45px;
+  padding-top: 5px;
+ border-top: 1px solid #eaeaea;
+  color: $gray-light;
+
+  a {
+    color: #555;
+    &:hover {
+      color: #222;
+    }
+  }
+
+  small {
+  float: left;
+  }
+
+  ul {
+  float: right;
+  list-style: none;
+
+    li {
+    float: left;
+    margin-left: 15px;
+    }
+  }
+}
